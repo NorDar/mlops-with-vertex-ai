@@ -20,4 +20,11 @@ resource "google_storage_bucket" "artifact_repo" {
     location      = local.region
     storage_class = local.bucket_type
     force_destroy = var.force_destroy
+
+    labels = {
+        customer = var.label_customer
+        project = var.label_project
+        expirationdate = var.label_expirationdate
+        requestor = var.label_requestor
+    }
 }

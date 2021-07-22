@@ -15,29 +15,29 @@
 
 
 variable "project_id" {
-    description = "The GCP project ID"
-    type        = string
+  description = "The GCP project ID"
+  type        = string
 }
 
 variable "region" {
-    description = "The region for the GCS bucket and Artifact Registry"
-    type        = string
-    default     = null
+  description = "The region for the GCS bucket and Artifact Registry"
+  type        = string
+  default     = null
 }
 
 variable "zone" {
-    description = "The zone for a Vertex Notebook instance"
-    type        = string
+  description = "The zone for a Vertex Notebook instance"
+  type        = string
 }
 
 variable "name_prefix" {
-    description = "The name prefix to add to the resource names"
-    type        = string
+  description = "The environment name prefix to add to the resource names"
+  type        = string
 }
 
 variable "machine_type" {
-    description = "The Notebook instance's machine type"
-    type        = string
+  description = "The Notebook instance's machine type"
+  type        = string
 }
 
 variable "network_name" {
@@ -53,44 +53,50 @@ variable "subnet_name" {
 }
 
 variable "subnet_region" {
-    description = "The region for the Notebook subnet"
-    type        = string
-    default     = "us-central1"
+  description = "The region for the Notebook subnet"
+  type        = string
+  default     = "us-central1"
 }
 
 variable "boot_disk_size" {
-    description = "The size of the boot disk"
-    default     = 200
+  description = "The size of the boot disk"
+  default     = 100
 }
 
 variable "image_family" {
-    description = "A Deep Learning image family for the Notebook instance"
-    type        = string
-    default     = "tf-2-4-cpu"
+  description = "A Deep Learning image family for the Notebook instance"
+  type        = string
+  default     = "tf-2-4-cpu"
 }
 
 variable "gpu_type" {
-    description = "A GPU type for the Notebook instance"
-    type        = string
-    default     = null
+  description = "A GPU type for the Notebook instance"
+  type        = string
+  default     = null
 }
 
 variable "gpu_count" {
-    description = "A GPU count for the Notebook instance"
-    type        = string
-    default     = null
+  description = "A GPU count for the Notebook instance"
+  type        = string
+  default     = null
 }
 
 variable "install_gpu_driver" {
-    description = "Whether to install GPU driver"
-    type        = bool
-    default     = false
+  description = "Whether to install GPU driver"
+  type        = bool
+  default     = false
+}
+
+variable "post_startup_script" {
+  description = "(Optional) Path to a Bash script that automatically runs after a notebook instance fully boots up. The path must be a URL or Cloud Storage path (gs://path-to-file/file-name)."
+  type        = string
+  default     = null
 }
 
 variable "force_destroy" {
-    description = "Whether to remove the bucket on destroy"
-    type        = bool
-    default     = false
+  description = "Whether to remove the bucket on destroy"
+  type        = bool
+  default     = false
 }
 
 variable "training_sa_roles" {
@@ -112,11 +118,32 @@ variable "pipelines_sa_roles" {
 }
 
 variable "training_sa_name" {
-    description = "Vertex training service account name."
-    default = "training-sa"
+  description = "Vertex training service account name."
+  default = "training-sa"
 }
 
 variable "pipelines_sa_name" {
-    description = "Vertex pipelines service account name."
-    default = "pipelines-sa"
+  description = "Vertex pipelines service account name."
+  default = "pipelines-sa"
+}
+
+### Scigility specific variables
+variable "label_customer" {
+  description = "Customer name."
+  type        = string
+}
+
+variable "label_project" {
+  description = "Project name."
+  type        = string
+}
+
+variable "label_expirationdate" {
+  description = "Expiration date after which a resource can be deleted."
+  type        = string
+}
+
+variable "label_requestor" {
+  description = "Requestor name. 1st-char-ofFirstnameLastname, e.g. “gkoenig”."
+  type        = string
 }

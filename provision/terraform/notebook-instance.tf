@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# gcr.io/deeplearning-platform-release
 locals {
     image_project = "deeplearning-platform-release"
 }
@@ -60,4 +61,17 @@ resource "google_notebooks_instance" "notebook_instance" {
     install_gpu_driver  = var.install_gpu_driver
 
     boot_disk_size_gb   = var.boot_disk_size
+
+    labels = {
+        customer = var.label_customer
+        project = var.label_project
+        expirationdate = var.label_expirationdate
+        requestor = var.label_requestor
+    }
+
+    metadata = {
+        terraform = "true"
+    }
+
+    post_startup_script = var.post_startup_script
 }
