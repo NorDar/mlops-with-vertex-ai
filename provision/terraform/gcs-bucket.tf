@@ -14,9 +14,9 @@
 # limitations under the License.
 
 
-resource "google_storage_bucket" "${project_id}-artifact_repo" {
+resource "google_storage_bucket" "artifact_repo" {
     project       = module.project-services.project_id
-    name          = "${var.name_prefix}-bucket"
+    name          = "${var.name_prefix}-bucket-${var.project_id}"
     location      = local.region
     storage_class = local.bucket_type
     force_destroy = var.force_destroy
